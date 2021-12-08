@@ -38,8 +38,15 @@ foreach($o as $w=>$s)
 	$o2 .= $p."\t";
 	$o2 .= $s."\t";
 	$l[] = $o2;
+	$p *= 10**13;
+	if(strpos($p,".")===false)	$p .= "0";
+	else $p *= 10;
+	$sol .= "claimers[$w] = $p;\n";
 }
 $txt = implode("\n",$l);
 $f = "metai.seed.txt";
 file_put_contents($f,$txt);
+//print $sol."\n";
+$f = "var_for_sol.txt";
+file_put_contents($f,$sol);
 ?>

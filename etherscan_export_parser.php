@@ -1,6 +1,8 @@
 #!/usr/bin/php
 <?php
-error_reporting(0);
+//error_reporting(0);
+include "conf.php";
+//error_reporting(65535);
 $f = "etherscan.export.csv";
 $a = file_get_contents($f);
 $a = trim($a);
@@ -29,8 +31,9 @@ arsort($o);
 //print_r($o);
 print "ALL: $all\n";
 
-foreach($o as $w=>$s)
+foreach($o as $w2=>$s)
 {
+	$w = eth_getCanonicalAddress($w2);
 	unset($o2);
 	$p = $s/$all;
 	$p *= 100;

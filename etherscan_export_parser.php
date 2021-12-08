@@ -6,6 +6,9 @@ $a = file_get_contents($f);
 $a = trim($a);
 $mas =  explode("\n",$a);
 unset($mas[0]);
+//UniswapV3Pool change for sender 6 ETH
+$change1["0x11b815efb8f581194ae79006d24e0d814b7697f6"] = "0x93df35071b3bc1b6d16d5f5f20fbb2be9d50fe67";
+
 foreach($mas as $v2)
 {
 	$t = explode("\",\"",$v2);
@@ -13,6 +16,11 @@ foreach($mas as $v2)
 	$from = $t[3];
 	$amount = $t[5];
 	$amount = str_replace(",","",$amount);
+	if(isset($change1[$from]))
+	{
+		//print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n";
+		$from = $change1[$from];
+	}
 	$o[$from] += $amount;
 	$all+= $amount;
 }
